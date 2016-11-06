@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication2
@@ -11,7 +12,7 @@ namespace WindowsFormsApplication2
   class Tank : Elements
   {
     private int myVelocity;
-    private Point vector;
+    private System.Drawing.Point vector;
     public int Velocity
     {
       get { return myVelocity; }
@@ -33,7 +34,7 @@ namespace WindowsFormsApplication2
       //Random rand = new Random();
       do
       {
-        vector = new Point(rand.Next(-1, 2), rand.Next(-1, 2));
+        vector = new System.Drawing.Point(rand.Next(-1, 2), rand.Next(-1, 2));
       } while (vector.X == 0 && vector.Y == 0);
      // rand = null;
     }
@@ -56,23 +57,71 @@ namespace WindowsFormsApplication2
         work = false;
 
 }
-      
+    public void CheckMovingElement(Elements newElement)
+    {
+
+      //elements
+      Rect newRectangle = new Rect(newElement.Element.Location.X,
+                              newElement.Element.Location.Y,
+                              newElement.Element.Size.Width,
+                              newElement.Element.Size.Height);
+      if (((Element.Location.Y <= newElement.Element.Location.Y+ newElement.Element.Height) &&
+          (rect.IntersectsWith(newRectangle)))||
+           ((Element.Location.Y+Element.Height >= newElement.Element.Location.Y) &&
+           (rect.IntersectsWith(newRectangle))))
+        vector.Y *= -1;
+      if (((Element.Location.X <= newElement.Element.Location.X + newElement.Element.Width) &&
+          (rect.IntersectsWith(newRectangle))) ||
+           ((Element.Location.X + Element.Width >= newElement.Element.Location.X) &&
+           (rect.IntersectsWith(newRectangle))))
+        vector.X *= -1;
+
+
+
+      //Element.Location.X + Element.Width >= myForm.ClientSize.Width)
+      //  vector.X *= -1;
+      //if (Element.Location.Y <= 0 ||
+      //    Element.Location.Y + Element.Height >= myForm.ClientSize.Height)
+      //  vector.Y *= -1;
+
+
+      //if (Math.Abs(Center.X - newElement.Center.X) <= Element.Width/2 + newElement.Element.Width / 2 ||
+      //    Math.Abs(Center.Y - newElement.Center.Y) <= Element.Height / 2 + newElement.Element.Height / 2)
+      //{
+      //  vector.X = -vector.X;
+      //  vector.Y = -vector.Y;
+      //  if (newElement is Tank)
+      //  {
+      //    ((Tank)newElement).vector.X *= -1;
+      //    ((Tank)newElement).vector.Y *= -1;
+      //  }
+      //}
+      //if (Math.Abs(Center.Y - newElement.Center.Y) <= Element.Height / 2 + newElement.Element.Height / 2)
+      //{
+      //  vector.Y = -vector.Y;
+      //  if (newElement is Tank)
+      //    ((Tank)newElement).vector.Y *= -1;
+      //}
+    }
+    public void CheckMovingBorder(Form myForm)
+    {
+      //Border
+      if (Element.Location.X <= 0 ||
+          Element.Location.X + Element.Width >= myForm.ClientSize.Width)
+        vector.X *= -1;
+      if (Element.Location.Y <= 0 ||
+          Element.Location.Y + Element.Height >= myForm.ClientSize.Height)
+        vector.Y *= -1;
+    }
     public void Move(Form myForm, int speed, Elements newElement)
     {
       Velocity = speed;
       //Point center = new Point(Element.Location.X + (Element.Width / 2),
       //                         Element.Location.Y + (Element.Height / 2));
-      Element.Location = new Point(Element.Location.X + Velocity * vector.X,
+      Element.Location = new System.Drawing.Point(Element.Location.X + Velocity * vector.X,
                                    Element.Location.Y + Velocity * vector.Y);
-      if (Element.Location.X <= 0 ||
-          Element.Location.X + Element.Width >= myForm.ClientSize.Width)
-        vector.X = -vector.X;
-      if (Element.Location.Y <= 0 ||
-          Element.Location.Y + Element.Height >= myForm.ClientSize.Height)
-        vector.Y = -vector.Y;
-
-
-
+      //Center = new System.Drawing.Point(Element.Location.X + (Element.Width / 2),
+      //                       Element.Location.Y + (Element.Height / 2));
     }
     
 

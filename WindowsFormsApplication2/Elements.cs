@@ -12,7 +12,7 @@ namespace WindowsFormsApplication2
 {
  class Elements
   {
-    public System.Drawing.Point Center { get; set; }
+    //public System.Drawing.Point Center { get; set; }
     //protected struct Points
     //{
     //  public int YUp { get; set; }
@@ -41,8 +41,8 @@ namespace WindowsFormsApplication2
     public Elements(dynamic element )
     {
       Element = element;
-      Center = new System.Drawing.Point(Element.Location.X + (Element.Width / 2),
-                             Element.Location.Y + (Element.Height / 2));
+      //Center = new System.Drawing.Point(Element.Location.X + (Element.Width / 2),
+      //                       Element.Location.Y + (Element.Height / 2));
       
       rect=new Rect(element.Location.X,
                     element.Location.Y,
@@ -72,5 +72,6 @@ namespace WindowsFormsApplication2
       if (flag == false)
         work = false;
     }
+
   }
 }

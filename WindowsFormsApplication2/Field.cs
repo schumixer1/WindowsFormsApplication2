@@ -9,18 +9,18 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication2
 {
-  class Field: Form
+  class Field : Form
   {
     private List<Tank> tanks = new List<Tank>();
     private List<Hindrance> hindrances = new List<Hindrance>();
     Form myForm;
-    public Field(object sender, dynamic Controls )
+    public Field(object sender, dynamic Controls)
     {
-    myForm = (Form1)sender;
-    Random rand = new Random();
-    List<Label> labels = new List<Label>();
-    List<Button> buttons = new List<Button>();
-    int countOfButton = 1, countOfLabel=1;
+      myForm = (Form1)sender;
+      Random rand = new Random();
+      List<Label> labels = new List<Label>();
+      List<Button> buttons = new List<Button>();
+      int countOfButton = 1, countOfLabel = 1;
       foreach (Control value in Controls)
       {
         Label currentLabel = value as Label;
@@ -29,9 +29,9 @@ namespace WindowsFormsApplication2
         {
           currentLabel.Tag = countOfLabel++;
           labels.Add(currentLabel);
-          tanks.Add(new Tank(labels.Last(),rand));
+          tanks.Add(new Tank(labels.Last(), rand));
         }
-        if(currentButton != null)
+        if (currentButton != null)
         {
           currentButton.Tag = countOfButton++;
           buttons.Add(currentButton);
@@ -53,27 +53,40 @@ namespace WindowsFormsApplication2
           item.CheckBorder(item, ref work, ref myForm);
       for (int i = 0; i < elements.Count; i++)
       {
-        for (int j = i; j < elements.Count-1; j++)
+        for (int j = i; j < elements.Count - 1; j++)
         {
-          elements[i].CheckIntersections(elements[j+1], ref work);
+          elements[i].CheckIntersections(elements[j + 1], ref work);
         }
       }
       return work;
     }
-    public void MoveTanks(object sender, System.EventArgs e)
+    public void CheckMovingElements()
     {
-      foreach (var item in tanks)
-      {
-        item.Move(myForm, 20, item);
-      }
+      //border
+      foreach(var item in tanks)
+        item.CheckMovingBorder(myForm);
+
+      //elements
       List<Elements> elements = new List<Elements>(tanks);
       elements.AddRange(hindrances);
       for (int i = 0; i < elements.Count; i++)
       {
-        for (int j = i; j < elements.Count - 1; j++)
+        for (int j = 0; j < elements.Count; j++)
         {
-         // ele
+          if ((elements[i] is Tank)&&(i!=j))
+            ((Tank)elements[i]).CheckMovingElement(elements[j]);
         }
       }
+    }
+    public void MoveTanks(object sender, System.EventArgs e)
+    {
+      CheckMovingElements();
+      foreach (var item in tanks)
+      {
+        item.Move(myForm, 20, null);
+      }
+      
+      
+    }
   }
 }
