@@ -21,13 +21,33 @@ namespace WindowsFormsApplication2
     {
       
     }
-    //private List<Button> tanks = new List<Button>();
-    //private List<Label> hindrance = new List<Label>();
+
+    private void Foo(object sender, System.EventArgs e)
+    {
+      foreach (var item in Controls)
+      {
+        Label currentLabel = item as Label;
+        if(currentLabel!=null)
+        {
+          currentLabel.BackColor = Color.DarkGreen;
+          currentLabel.Location=new Point(currentLabel.Location.X+2, currentLabel.Location.Y + 2);
+          //Graphics g = currentLabel.CreateGraphics();
+          //g.TranslateTransform(200, 5);
+        }
+      }
+    }
     private void Form1_Load(object sender, System.EventArgs e)
     {
       Field field = new Field(Controls);
-      field.CheckPrimaryPosition(sender);
-
+      bool work=field.CheckPrimaryPosition(sender);
+      if(work==true)
+      {
+        Timer myTimer = new Timer();
+        myTimer.Tick += new EventHandler(Foo);
+        myTimer.Interval = 500;
+        myTimer.Start();
+        Application.DoEvents();
+      }
     }
     private void label1_Click(object sender, EventArgs e)
     {

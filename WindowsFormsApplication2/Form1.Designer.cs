@@ -43,7 +43,7 @@
       // 
       // button1
       // 
-      this.button1.Location = new System.Drawing.Point(488, 256);
+      this.button1.Location = new System.Drawing.Point(483, 91);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(171, 43);
       this.button1.TabIndex = 0;
@@ -70,7 +70,7 @@
       // 
       // button4
       // 
-      this.button4.Location = new System.Drawing.Point(640, 392);
+      this.button4.Location = new System.Drawing.Point(578, 284);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(337, 63);
       this.button4.TabIndex = 3;
@@ -90,7 +90,7 @@
       // label1
       // 
       this.label1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-      this.label1.Location = new System.Drawing.Point(500, 75);
+      this.label1.Location = new System.Drawing.Point(717, 44);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(20, 40);
       this.label1.TabIndex = 6;
@@ -126,7 +126,7 @@
       // label6
       // 
       this.label6.BackColor = System.Drawing.SystemColors.MenuHighlight;
-      this.label6.Location = new System.Drawing.Point(999, 169);
+      this.label6.Location = new System.Drawing.Point(939, 202);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(94, 24);
       this.label6.TabIndex = 10;
