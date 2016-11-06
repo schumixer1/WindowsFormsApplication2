@@ -43,7 +43,7 @@
       // 
       // button1
       // 
-      this.button1.Location = new System.Drawing.Point(483, 91);
+      this.button1.Location = new System.Drawing.Point(463, 137);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(171, 43);
       this.button1.TabIndex = 0;
@@ -99,7 +99,7 @@
       // label3
       // 
       this.label3.BackColor = System.Drawing.SystemColors.MenuHighlight;
-      this.label3.Location = new System.Drawing.Point(893, 106);
+      this.label3.Location = new System.Drawing.Point(839, 72);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(60, 40);
       this.label3.TabIndex = 7;

@@ -10,8 +10,33 @@ namespace WindowsFormsApplication2
 {
   class Tank : Elements
   {
-    public Tank():base() { }
-    public Tank(Label label) : base(label) { }
+    private int myVelocity;
+    private Point vector;
+    public int Velocity
+    {
+      get { return myVelocity; }
+      set
+      {
+        if (value >= 0 || value <= 20)
+          myVelocity = value;
+        else
+        {
+          MessageBox.Show(String.Format("Wrong velocity: {0}", value));
+          System.Environment.Exit(1);
+        }
+      }
+    }
+    public Tank():base(){}
+    public Tank(Label label,Random rand) : base(label)
+    {
+      Velocity = 5;
+      //Random rand = new Random();
+      do
+      {
+        vector = new Point(rand.Next(-1, 2), rand.Next(-1, 2));
+      } while (vector.X == 0 && vector.Y == 0);
+     // rand = null;
+    }
 
     public void CheckBorder(Tank item, ref bool work, ref Form myForm)
     {
@@ -32,13 +57,25 @@ namespace WindowsFormsApplication2
 
 }
       
-    //public void move(dynamic mas, int speed)
-    //{
-    //  foreach (var item in mas)
-    //  {
-    //    // item.
-    //  }
-    //}
+    public void Move(Form myForm, int speed, Elements newElement)
+    {
+      Velocity = speed;
+      //Point center = new Point(Element.Location.X + (Element.Width / 2),
+      //                         Element.Location.Y + (Element.Height / 2));
+      Element.Location = new Point(Element.Location.X + Velocity * vector.X,
+                                   Element.Location.Y + Velocity * vector.Y);
+      if (Element.Location.X <= 0 ||
+          Element.Location.X + Element.Width >= myForm.ClientSize.Width)
+        vector.X = -vector.X;
+      if (Element.Location.Y <= 0 ||
+          Element.Location.Y + Element.Height >= myForm.ClientSize.Height)
+        vector.Y = -vector.Y;
+
+
+
+    }
+    
+
   }
 }
 

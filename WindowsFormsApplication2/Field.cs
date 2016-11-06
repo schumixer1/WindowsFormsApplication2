@@ -13,10 +13,11 @@ namespace WindowsFormsApplication2
   {
     private List<Tank> tanks = new List<Tank>();
     private List<Hindrance> hindrances = new List<Hindrance>();
-    //Form myForm;
-    public Field(dynamic Controls )
+    Form myForm;
+    public Field(object sender, dynamic Controls )
     {
-      //myForm = (Form1)sender;
+    myForm = (Form1)sender;
+    Random rand = new Random();
     List<Label> labels = new List<Label>();
     List<Button> buttons = new List<Button>();
     int countOfButton = 1, countOfLabel=1;
@@ -28,7 +29,7 @@ namespace WindowsFormsApplication2
         {
           currentLabel.Tag = countOfLabel++;
           labels.Add(currentLabel);
-          tanks.Add(new Tank(labels.Last()));
+          tanks.Add(new Tank(labels.Last(),rand));
         }
         if(currentButton != null)
         {
@@ -40,10 +41,10 @@ namespace WindowsFormsApplication2
 
 
     }
-    public bool CheckPrimaryPosition(object sender)
+    public bool CheckPrimaryPosition()
     {
-      Form myForm;
-      myForm = (Form1)sender;
+      //Form myForm;
+      //myForm = (Form1)sender;
       List<Elements> elements = new List<Elements>(tanks);
       elements.AddRange(hindrances);
       bool work = true;
@@ -59,5 +60,20 @@ namespace WindowsFormsApplication2
       }
       return work;
     }
+    public void MoveTanks(object sender, System.EventArgs e)
+    {
+      foreach (var item in tanks)
+      {
+        item.Move(myForm, 20, item);
+      }
+      List<Elements> elements = new List<Elements>(tanks);
+      elements.AddRange(hindrances);
+      for (int i = 0; i < elements.Count; i++)
+      {
+        for (int j = i; j < elements.Count - 1; j++)
+        {
+         // ele
+        }
+      }
   }
 }
