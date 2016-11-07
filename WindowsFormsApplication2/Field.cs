@@ -13,7 +13,7 @@ namespace WindowsFormsApplication2
   {
     private List<Tank> tanks = new List<Tank>();
     private List<Hindrance> hindrances = new List<Hindrance>();
-    private TrackBar trackbar;
+    private Track trackElement;
     Form myForm;
     public Field(object sender, dynamic Controls, int speed)
     {
@@ -42,7 +42,7 @@ namespace WindowsFormsApplication2
         else if (currentTrackBar != null)
 
         {
-          trackbar = currentTrackBar;
+          trackElement = new Track(currentTrackBar);
           //trackbar.Margin. = 0;
         }
       }
@@ -69,7 +69,7 @@ namespace WindowsFormsApplication2
       }
       return work;
     }
-    public void CheckMovingElements()
+    public void CheckMoving()
     {
       //border
       foreach (var item in tanks)
@@ -78,6 +78,7 @@ namespace WindowsFormsApplication2
       //elements
       List<Elements> elements = new List<Elements>(tanks);
       elements.AddRange(hindrances);
+      elements.Add(trackElement);
       for (int i = 0; i < elements.Count; i++)
       {
         for (int j = 0; j < elements.Count; j++)
@@ -86,13 +87,16 @@ namespace WindowsFormsApplication2
             ((Tank)elements[i]).CheckMovingElement(elements[j]);
         }
       }
+      //border
+      foreach (var item in tanks)
+        item.CheckMovingBorder(myForm);
     }
     public void MoveTanks(object sender, System.EventArgs e)
     {
-      CheckMovingElements();
-      for (int i = 0; i < trackbar.Value; i++)
+      //CheckMovingElements();
+      for (int i = 0; i < trackElement.Element.Value; i++)
       {
-        CheckMovingElements();
+        CheckMoving();
         foreach (var item in tanks)
           item.Move(myForm, 1, null);
       }

@@ -68,51 +68,61 @@ namespace WindowsFormsApplication2
       if (rect.IntersectsWith(newElement.rect) /*&& HaveAlreadyIntersect!=true*/)
       {
         //MessageBox.Show(string.Format("Intersection beween {0} and {1}", Element.Text, newElement.Element.Text));
-        //up
-        if ((rect.Bottom>=newElement.rect.Top &&
-             rect.Top<=newElement.rect.Top) &&
-            (vector == new System.Drawing.Point(-1,1)||
+        const int N = 5;
+        //down
+        if ((rect.Bottom >= newElement.rect.Top &&
+             rect.Top <= newElement.rect.Top) &&
+            (vector == new System.Drawing.Point(-1, 1) ||
              vector == new System.Drawing.Point(0, 1) ||
-             vector == new System.Drawing.Point(1, 1)))
+             vector == new System.Drawing.Point(1, 1)) &&
+             Math.Abs(rect.Bottom - newElement.rect.Top) <= N)
         {
           vector.Y *= -1;
           Element.Location = new System.Drawing.Point(Element.Location.X,
-                                   Element.Location.Y -1);
+                                   Element.Location.Y - 1);
           //vector.X *= -1;
         }
-        //down
-        else if((rect.Top <= newElement.rect.Bottom &&
-                 rect.Bottom >= newElement.rect.Bottom)&&
+        //up
+        else if ((rect.Top <= newElement.rect.Bottom &&
+                 rect.Bottom >= newElement.rect.Bottom) &&
                 (vector == new System.Drawing.Point(-1, -1) ||
                  vector == new System.Drawing.Point(0, -1) ||
-                 vector == new System.Drawing.Point(1, -1)) )
+                 vector == new System.Drawing.Point(1, -1)) &&
+                 Math.Abs(rect.Top - newElement.rect.Bottom) <= N)
         {
           vector.Y *= -1;
           Element.Location = new System.Drawing.Point(Element.Location.X,
                          Element.Location.Y + 1);
         }
-        //left
+        //right
         else if ((rect.Right >= newElement.rect.Left &&
                  rect.Left <= newElement.rect.Left) &&
                 (vector == new System.Drawing.Point(1, -1) ||
                  vector == new System.Drawing.Point(1, 0) ||
-                 vector == new System.Drawing.Point(1, 1)))
+                 vector == new System.Drawing.Point(1, 1)) &&
+                 Math.Abs(rect.Right - newElement.rect.Left) <= N)
         {
           vector.X *= -1;
-          Element.Location = new System.Drawing.Point(Element.Location.X-1,
-                         Element.Location.Y );
+          Element.Location = new System.Drawing.Point(Element.Location.X - 1,
+                         Element.Location.Y);
         }
-        //right
+        //left
         else if ((rect.Left <= newElement.rect.Right &&
                  rect.Right >= newElement.rect.Right) &&
                 (vector == new System.Drawing.Point(-1, -1) ||
                  vector == new System.Drawing.Point(-1, 0) ||
-                 vector == new System.Drawing.Point(-1, 1)))
+                 vector == new System.Drawing.Point(-1, 1)) &&
+                 Math.Abs(rect.Left - newElement.rect.Right) <= N)
         {
           vector.X *= -1;
-          Element.Location = new System.Drawing.Point(Element.Location.X+1,
-                         Element.Location.Y + 1);
+          Element.Location = new System.Drawing.Point(Element.Location.X + 1,
+                         Element.Location.Y);
         }
+        else
+        {
+          
+        }
+          //MessageBox.Show("mistake");
 
         //if (Element.Location.X <= 0 ||
         //  Element.Location.X + Element.Width >= myForm.ClientSize.Width)
