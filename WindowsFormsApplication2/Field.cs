@@ -101,12 +101,6 @@ namespace WindowsFormsApplication2
         foreach (var item in tanks)
           item.Move(myForm, 1, null);
       }
-
-
     }
-
-
-
-
-  }
+ }
 }
