@@ -15,13 +15,26 @@ namespace WindowsFormsApplication2
     public Form1()
     {
       InitializeComponent();
+      //trackBar1.Scroll += trackBar1_Scroll;
     }
 
     private void label2_Click(object sender, EventArgs e)
     {
       
     }
-
+    private void trackBar1_Scroll(object sender, EventArgs e)
+    {
+      textBox1.Text = String.Format("Текущее значение: {0}", trackBar1.Value);
+    }
+    private void trackBar1_MouseWheel(object sender, MouseEventArgs e)
+    {
+      ((HandledMouseEventArgs)e).Handled = true;//отключить заранее определенный trackBar1_MouseWheel
+      if ((e.Delta >0) && (trackBar1.Value<trackBar1.Maximum))
+        trackBar1.Value += 1;
+      else if ((e.Delta <0) && (trackBar1.Value > trackBar1.Minimum))
+        trackBar1.Value -= 1;
+      textBox1.Text = String.Format("Текущее значение: {0}", trackBar1.Value);
+    }
     //private void Foo(object sender, System.EventArgs e)
     //{
     //  foreach (var item in Controls)
@@ -38,7 +51,7 @@ namespace WindowsFormsApplication2
     //}
     private void Form1_Load(object sender, System.EventArgs e)
     {
-      Field field = new Field(sender, Controls);
+      Field field = new Field(sender, Controls, trackBar1.Value);
       bool work=field.CheckPrimaryPosition();
       if(work==true)
       {
@@ -55,6 +68,11 @@ namespace WindowsFormsApplication2
     }
 
     private void label6_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void textBox1_TextChanged(object sender, EventArgs e)
     {
 
     }

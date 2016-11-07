@@ -28,9 +28,9 @@ namespace WindowsFormsApplication2
       }
     }
     public Tank():base(){}
-    public Tank(Label label,Random rand) : base(label)
+    public Tank(Label label,Random rand, int speed) : base(label)
     {
-      Velocity = 5;
+      Velocity = speed;
       //Random rand = new Random();
       do
       {
@@ -61,48 +61,57 @@ namespace WindowsFormsApplication2
     {
 
       //elements
-      Rect newRectangle = new Rect(newElement.Element.Location.X,
+      newElement.rect = new Rect(newElement.Element.Location.X,
                               newElement.Element.Location.Y,
                               newElement.Element.Size.Width,
                               newElement.Element.Size.Height);
-      if (((Element.Location.Y <= newElement.Element.Location.Y+ newElement.Element.Height) &&
-          (rect.IntersectsWith(newRectangle)))||
-           ((Element.Location.Y+Element.Height >= newElement.Element.Location.Y) &&
-           (rect.IntersectsWith(newRectangle))))
-        vector.Y *= -1;
-      if (((Element.Location.X <= newElement.Element.Location.X + newElement.Element.Width) &&
-          (rect.IntersectsWith(newRectangle))) ||
-           ((Element.Location.X + Element.Width >= newElement.Element.Location.X) &&
-           (rect.IntersectsWith(newRectangle))))
-        vector.X *= -1;
+      if (rect.IntersectsWith(newElement.rect) && HaveAlreadyIntersect!=true)
+      {
+        //MessageBox.Show(string.Format("Intersection beween {0} and {1}", Element.Text, newElement.Element.Text));
+        if (Element.Location.Y <= newElement.Element.Location.Y + newElement.Element.Height)
+          vector.Y *= -1;
+        if (Element.Location.X <= newElement.Element.Location.X + newElement.Element.Width)
+          vector.X *= -1;
+        HaveAlreadyIntersect = true;
+        //if (((Element.Location.Y <= newElement.Element.Location.Y+ newElement.Element.Height) &&
+        //    (rect.IntersectsWith(newRectangle)))||
+        //     ((Element.Location.Y+Element.Height >= newElement.Element.Location.Y) &&
+        //     (rect.IntersectsWith(newRectangle))))
+        //  vector.Y *= -1;
+        //if (((Element.Location.X <= newElement.Element.Location.X + newElement.Element.Width) &&
+        //    (rect.IntersectsWith(newRectangle))) ||
+        //     ((Element.Location.X + Element.Width >= newElement.Element.Location.X) &&
+        //     (rect.IntersectsWith(newRectangle))))
+        //  vector.X *= -1;
 
 
 
-      //Element.Location.X + Element.Width >= myForm.ClientSize.Width)
-      //  vector.X *= -1;
-      //if (Element.Location.Y <= 0 ||
-      //    Element.Location.Y + Element.Height >= myForm.ClientSize.Height)
-      //  vector.Y *= -1;
+        //Element.Location.X + Element.Width >= myForm.ClientSize.Width)
+        //  vector.X *= -1;
+        //if (Element.Location.Y <= 0 ||
+        //    Element.Location.Y + Element.Height >= myForm.ClientSize.Height)
+        //  vector.Y *= -1;
 
 
-      //if (Math.Abs(Center.X - newElement.Center.X) <= Element.Width/2 + newElement.Element.Width / 2 ||
-      //    Math.Abs(Center.Y - newElement.Center.Y) <= Element.Height / 2 + newElement.Element.Height / 2)
-      //{
-      //  vector.X = -vector.X;
-      //  vector.Y = -vector.Y;
-      //  if (newElement is Tank)
-      //  {
-      //    ((Tank)newElement).vector.X *= -1;
-      //    ((Tank)newElement).vector.Y *= -1;
-      //  }
-      //}
-      //if (Math.Abs(Center.Y - newElement.Center.Y) <= Element.Height / 2 + newElement.Element.Height / 2)
-      //{
-      //  vector.Y = -vector.Y;
-      //  if (newElement is Tank)
-      //    ((Tank)newElement).vector.Y *= -1;
-      //}
-    }
+        //if (Math.Abs(Center.X - newElement.Center.X) <= Element.Width/2 + newElement.Element.Width / 2 ||
+        //    Math.Abs(Center.Y - newElement.Center.Y) <= Element.Height / 2 + newElement.Element.Height / 2)
+        //{
+        //  vector.X = -vector.X;
+        //  vector.Y = -vector.Y;
+        //  if (newElement is Tank)
+        //  {
+        //    ((Tank)newElement).vector.X *= -1;
+        //    ((Tank)newElement).vector.Y *= -1;
+        //  }
+        //}
+        //if (Math.Abs(Center.Y - newElement.Center.Y) <= Element.Height / 2 + newElement.Element.Height / 2)
+        //{
+        //  vector.Y = -vector.Y;
+        //  if (newElement is Tank)
+        //    ((Tank)newElement).vector.Y *= -1;
+        //}
+      }
+      }
     public void CheckMovingBorder(Form myForm)
     {
       //Border

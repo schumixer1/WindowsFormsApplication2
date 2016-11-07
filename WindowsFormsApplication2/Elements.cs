@@ -36,15 +36,16 @@ namespace WindowsFormsApplication2
     //}
     //protected Points coordinate;
     public dynamic Element { get; set; }
-    protected Rect rect;
-    public Elements() { }
+    public Rect rect;
+    public bool HaveAlreadyIntersect{ get; set; }
+  public Elements() { }
     public Elements(dynamic element )
     {
       Element = element;
       //Center = new System.Drawing.Point(Element.Location.X + (Element.Width / 2),
       //                       Element.Location.Y + (Element.Height / 2));
-      
-      rect=new Rect(element.Location.X,
+      HaveAlreadyIntersect = false;
+      rect =new Rect(element.Location.X,
                     element.Location.Y,
                     element.Size.Width,
                     element.Size.Height);

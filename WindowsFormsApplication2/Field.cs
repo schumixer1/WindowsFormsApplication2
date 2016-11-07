@@ -13,8 +13,9 @@ namespace WindowsFormsApplication2
   {
     private List<Tank> tanks = new List<Tank>();
     private List<Hindrance> hindrances = new List<Hindrance>();
+    private TrackBar trackbar;
     Form myForm;
-    public Field(object sender, dynamic Controls)
+    public Field(object sender, dynamic Controls, int speed)
     {
       myForm = (Form1)sender;
       Random rand = new Random();
@@ -25,18 +26,21 @@ namespace WindowsFormsApplication2
       {
         Label currentLabel = value as Label;
         Button currentButton = value as Button;
+        TrackBar currentTrackBar = value as TrackBar;
         if (currentLabel != null)
         {
           currentLabel.Tag = countOfLabel++;
           labels.Add(currentLabel);
-          tanks.Add(new Tank(labels.Last(), rand));
+          tanks.Add(new Tank(labels.Last(), rand, speed));
         }
-        if (currentButton != null)
+        else if (currentButton != null)
         {
           currentButton.Tag = countOfButton++;
           buttons.Add(currentButton);
           hindrances.Add(new Hindrance(buttons.Last()));
         }
+        else if (currentTrackBar != null)
+          trackbar = currentTrackBar;
       }
 
 
@@ -81,12 +85,21 @@ namespace WindowsFormsApplication2
     public void MoveTanks(object sender, System.EventArgs e)
     {
       CheckMovingElements();
+      //foreach (Control item in myForm.Controls)
+      //{
+      //  if (item is TrackBar)
+      //  {
+      //    TrackBar trackBar = (TrackBar)item;
+      //  }
+      //}
       foreach (var item in tanks)
       {
-        item.Move(myForm, 20, null);
+        item.Move(myForm, trackbar.Value, null);
+        
       }
-      
-      
+      //item.HaveAlreadyIntersect = false;
+
+
     }
   }
 }
