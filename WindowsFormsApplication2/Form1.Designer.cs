@@ -38,13 +38,16 @@
       this.label4 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
+      this.label8 = new System.Windows.Forms.Label();
+      this.label9 = new System.Windows.Forms.Label();
+      this.button2 = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
       this.SuspendLayout();
       // 
       // label3
       // 
       this.label3.BackColor = System.Drawing.SystemColors.MenuHighlight;
-      this.label3.Location = new System.Drawing.Point(684, 313);
+      this.label3.Location = new System.Drawing.Point(679, 290);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(136, 128);
       this.label3.TabIndex = 7;
@@ -54,7 +57,7 @@
       // label7
       // 
       this.label7.BackColor = System.Drawing.SystemColors.MenuHighlight;
-      this.label7.Location = new System.Drawing.Point(516, 293);
+      this.label7.Location = new System.Drawing.Point(472, 325);
       this.label7.Name = "label7";
       this.label7.Size = new System.Drawing.Size(131, 116);
       this.label7.TabIndex = 11;
@@ -133,11 +136,38 @@
       // label6
       // 
       this.label6.BackColor = System.Drawing.SystemColors.MenuHighlight;
-      this.label6.Location = new System.Drawing.Point(901, 190);
+      this.label6.Location = new System.Drawing.Point(872, 138);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(58, 51);
       this.label6.TabIndex = 18;
       this.label6.Text = "T7";
+      // 
+      // label8
+      // 
+      this.label8.BackColor = System.Drawing.SystemColors.MenuHighlight;
+      this.label8.Location = new System.Drawing.Point(268, 325);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(131, 116);
+      this.label8.TabIndex = 19;
+      this.label8.Text = "T1";
+      // 
+      // label9
+      // 
+      this.label9.BackColor = System.Drawing.SystemColors.MenuHighlight;
+      this.label9.Location = new System.Drawing.Point(925, 386);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(136, 128);
+      this.label9.TabIndex = 20;
+      this.label9.Text = "T2";
+      // 
+      // button2
+      // 
+      this.button2.Location = new System.Drawing.Point(875, 244);
+      this.button2.Name = "button2";
+      this.button2.Size = new System.Drawing.Size(160, 53);
+      this.button2.TabIndex = 21;
+      this.button2.Text = "button2";
+      this.button2.UseVisualStyleBackColor = true;
       // 
       // Form1
       // 
@@ -145,6 +175,9 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.InactiveCaption;
       this.ClientSize = new System.Drawing.Size(1171, 580);
+      this.Controls.Add(this.button2);
+      this.Controls.Add(this.label9);
+      this.Controls.Add(this.label8);
       this.Controls.Add(this.label6);
       this.Controls.Add(this.label5);
       this.Controls.Add(this.label4);
@@ -177,6 +210,9 @@
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.Label label8;
+    private System.Windows.Forms.Label label9;
+    private System.Windows.Forms.Button button2;
   }
 }
 

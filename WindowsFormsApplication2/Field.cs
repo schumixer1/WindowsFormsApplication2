@@ -56,6 +56,7 @@ namespace WindowsFormsApplication2
       //myForm = (Form1)sender;
       List<Elements> elements = new List<Elements>(tanks);
       elements.AddRange(hindrances);
+      elements.Add(trackElement);
       bool work = true;
       if (tanks.Count != 0)
         foreach (var item in tanks)
