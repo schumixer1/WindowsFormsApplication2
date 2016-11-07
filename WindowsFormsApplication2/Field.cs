@@ -40,8 +40,13 @@ namespace WindowsFormsApplication2
           hindrances.Add(new Hindrance(buttons.Last()));
         }
         else if (currentTrackBar != null)
+
+        {
           trackbar = currentTrackBar;
+          //trackbar.Margin. = 0;
+        }
       }
+
 
 
     }
@@ -67,7 +72,7 @@ namespace WindowsFormsApplication2
     public void CheckMovingElements()
     {
       //border
-      foreach(var item in tanks)
+      foreach (var item in tanks)
         item.CheckMovingBorder(myForm);
 
       //elements
@@ -77,7 +82,7 @@ namespace WindowsFormsApplication2
       {
         for (int j = 0; j < elements.Count; j++)
         {
-          if ((elements[i] is Tank)&&(i!=j))
+          if ((elements[i] is Tank) && (i != j))
             ((Tank)elements[i]).CheckMovingElement(elements[j]);
         }
       }
@@ -85,21 +90,18 @@ namespace WindowsFormsApplication2
     public void MoveTanks(object sender, System.EventArgs e)
     {
       CheckMovingElements();
-      //foreach (Control item in myForm.Controls)
-      //{
-      //  if (item is TrackBar)
-      //  {
-      //    TrackBar trackBar = (TrackBar)item;
-      //  }
-      //}
-      foreach (var item in tanks)
+      for (int i = 0; i < trackbar.Value; i++)
       {
-        item.Move(myForm, trackbar.Value, null);
-        
+        CheckMovingElements();
+        foreach (var item in tanks)
+          item.Move(myForm, 1, null);
       }
-      //item.HaveAlreadyIntersect = false;
 
 
     }
+
+
+
+
   }
 }

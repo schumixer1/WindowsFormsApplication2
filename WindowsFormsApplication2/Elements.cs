@@ -42,6 +42,7 @@ namespace WindowsFormsApplication2
     public Elements(dynamic element )
     {
       Element = element;
+      //Element.Margin = 0;
       //Center = new System.Drawing.Point(Element.Location.X + (Element.Width / 2),
       //                       Element.Location.Y + (Element.Height / 2));
       HaveAlreadyIntersect = false;
